@@ -29,7 +29,8 @@ client.on('message', message => {
             name = emb.image.url.split('/').pop(-1).split('.')[0];
             //message.channel.send(images[name]);
             realname = images[name];
-            message.channel.send("A wild " + realname + " has appeared");
+            if (realname.length >0)
+                message.channel.send("A wild " + realname + " has appeared");
         }
     }
     
