@@ -25,6 +25,7 @@ client.on('message', message => {
     if (message.embeds.length > 0) {
         emb = message.embeds[0];
         if (emb.title.startsWith('A wild')) {
+            message.channel.send(emb.title);
             name = emb.image.url.split('/').pop(-1).split('.')[0];
             realname = images[name];
             message.channel.send("A wild ${realname} has spawned");
