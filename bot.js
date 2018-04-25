@@ -6,10 +6,16 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'ping') {
+    if (message.content === '$ping') {
     	message.reply('pong');
   	}
+    if (message.content === "$loop") { 
+      var interval = setInterval (function () {
+        message.channel.send("spaming here")
+      }, 2 * 1000); 
+    }
 });
+
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
