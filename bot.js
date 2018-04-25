@@ -22,10 +22,10 @@ client.on('message', message => {
       clearInterval(interval); 
     }
     
-    if (message.embeds.length) {
-        emb = message.embeds[0]
-        if title.startsWith('A wild') {
-            name = self.pokeref[emb.image.url.split('/')[-1].split('.')[0]]
+    if (message.embeds.length > 0) {
+        emb = message.embeds[0];
+        if (emb.title.startsWith('A wild')) {
+            name = emb.image.url.split('/').pop(-1).split('.')[0];
             realname = images[name];
             message.channel.send("A wild ${realname} has spawned");
         }
