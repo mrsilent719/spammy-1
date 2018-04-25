@@ -5,14 +5,19 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
+var interval;
+
 client.on('message', message => {
     if (message.content === '$ping') {
     	message.reply('pong');
   	}
     if (message.content === "$loop") { 
-      var interval = setInterval (function () {
+      interval = setInterval (function () {
         message.channel.send("spaming here")
       }, 2 * 1000); 
+    }
+    if (message.content === "$stop") { 
+      clearInterval(interval); 
     }
 });
 
