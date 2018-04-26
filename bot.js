@@ -8,7 +8,7 @@ client.on('ready', () => {
 });
 
 var interval;
-var intervalid;
+var spamid;
 var infoid;
 
 client.on('message', message => {
@@ -19,34 +19,47 @@ client.on('message', message => {
     
     if (message.content === "$spam") { 
       interval = setInterval (function () {
-        if (internalid.indexOf(message.channel) < 0)
-            internalid.push(message.channel)
+        if (spamid.indexOf(message.channel) < 0)
+            spamid.push(message.channel)
         
+        message.channel.send("spam enabled");
         var index;
-        for (index = 0; index < intervalid.length; ++index) {
+        for (index = 0; index < spamid.length; ++index) {
             //console.log(a[index]);
             //message.channel.send("spaming here")
-            client.channels.get(intervalid[index]).send('spamming here');
+            client.channels.get(spamid[index]).send('spamming here');
         }
       }, 5 * 1000); 
     }
     
     if (message.content === "$stop") {
-        var index = intervalid.indexOf(message.channel);
+        var index = spamid.indexOf(message.channel);
         if (index > -1) {
-          intervalid.splice(index, 1);
+          spamid.splice(index, 1);
         }
-        if (intervalid.length < 1)
+        message.channel.send("spam disabled");
+        
+        if (spamid.length < 1)
             clearInterval(interval); 
+    }
+    
+    if (message.content === "$spamchannels") { 
+        message.channel.send("spam channels: " + spamid.join(", "));
     }
 
     if (message.content === "$info") {
         var index = infoid.indexOf(message.channel);
         if (index > -1) {
             infoid.splice(index, 1);
+            message.channel.send("spawns info disabled");
         } else {
             infoid.push(message.channel)
+            message.channel.send("spawns info enabled");
         }
+    }
+
+    if (message.content === "$infochannels") { 
+        message.channel.send("spawns info channels: " + infoid.join(", "));
     }
 
     if (message.embeds.length > 0) {
