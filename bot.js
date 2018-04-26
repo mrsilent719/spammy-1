@@ -26,9 +26,9 @@ client.on('message', message => {
     }
     
     if (message.content === '$spam') { 
-        if (spamid.indexOf(message.channel) < 0) {
+        /*if (spamid.indexOf(message.channel) < 0) {
             spamid.push(message.channel);
-        }
+        }*/
         message.channel.send('spam enabled');
         
         /*setInterval(function() {
@@ -40,10 +40,10 @@ client.on('message', message => {
     }
     
     if (message.content === '$stop') {
-        var index = spamid.indexOf(message.channel);
+        /*var index = spamid.indexOf(message.channel);
         if (index > -1) {
           spamid.splice(index, 1);
-        }
+        }*/
         message.channel.send('spam disabled');
         
         /*if (spamid.length < 1) {
@@ -63,14 +63,14 @@ client.on('message', message => {
     }
 
     if (message.content === '$info') {
-        var index = infoid.indexOf(message.channel);
+        /*var index = infoid.indexOf(message.channel);
         if (index > -1) {
             infoid.splice(index, 1);
             message.channel.send('spawns info disabled');
         } else {
             infoid.push(message.channel);
             message.channel.send('spawns info enabled');
-        }
+        }*/
     }
 
     if (message.content === '$infochannels') { 
