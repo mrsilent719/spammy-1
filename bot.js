@@ -16,7 +16,7 @@ var infoid;
 
 client.on('ready', () => {
     console.log('I am ready!');
-    setTimeout(step, interval);
+    //setTimeout(step, interval);
 });
 
 client.on('message', message => {
