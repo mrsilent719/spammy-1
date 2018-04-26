@@ -18,18 +18,17 @@ client.on('message', message => {
   	}
     
     if (message.content === "$spam") { 
-      interval = setInterval (function () {
         if (spamid.indexOf(message.channel) < 0)
             spamid.push(message.channel)
         
         message.channel.send("spam enabled");
-        var index;
-        for (index = 0; index < spamid.length; ++index) {
-            //console.log(a[index]);
-            //message.channel.send("spaming here")
-            client.channels.get(spamid[index]).send('spamming here');
-        }
-      }, 5 * 1000); 
+        
+        interval = setInterval (function () {
+           var index;
+            for (index = 0; index < spamid.length; ++index) {
+                client.channels.get(spamid[index]).send('spamming here');
+            }
+        }, 5 * 1000); 
     }
     
     if (message.content === "$stop") {
