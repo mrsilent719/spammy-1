@@ -7,12 +7,12 @@ var interval = 5000;
 var spamid;
 var infoid;
 
-function step() {
+/*function step() {
     var index;
     for (index = 0; index < spamid.length; ++index) {
         client.channels.get(spamid[index]).send('spamming here');
     }
-} 
+};*/
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -30,6 +30,13 @@ client.on('message', message => {
             spamid.push(message.channel);
         
         message.channel.send("spam enabled");
+        
+        setInterval(function() {
+            var index;
+            for (index = 0; index < spamid.length; ++index) {
+                client.channels.get(spamid[index]).send('spamming here');
+            }            
+        }, interval);
     }
     
     if (message.content === "$stop") {
@@ -40,7 +47,15 @@ client.on('message', message => {
         message.channel.send("spam disabled");
         
         if (spamid.length < 1)
-            clearInterval(interval); 
+            clearInterval(interval);
+        else {
+            setInterval(function() {
+                var index;
+                for (index = 0; index < spamid.length; ++index) {
+                    client.channels.get(spamid[index]).send('spamming here');
+                }            
+            }, interval);
+        }
     }
     
     if (message.content === "$spamchannels") { 
