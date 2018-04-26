@@ -3,7 +3,7 @@ const fs = require("fs");
 const client = new Discord.Client();
 const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
-var interval = 5000;
+//var interval = 5000;
 var spamid;
 var infoid;
 
@@ -31,12 +31,12 @@ client.on('message', message => {
         }
         message.channel.send("spam enabled");
         
-        setInterval(function() {
+        /*setInterval(function() {
             var index;
             for (index = 0; index < spamid.length; ++index) {
                 client.channels.get(spamid[index]).send('spamming here');
             }            
-        }, interval);
+        }, 5000);*/
     }
     
     if (message.content === "$stop") {
@@ -46,7 +46,7 @@ client.on('message', message => {
         }
         message.channel.send("spam disabled");
         
-        if (spamid.length < 1) {
+        /*if (spamid.length < 1) {
             clearInterval(interval);
         } else {
             setInterval(function() {
@@ -54,12 +54,12 @@ client.on('message', message => {
                 for (index = 0; index < spamid.length; ++index) {
                     client.channels.get(spamid[index]).send('spamming here');
                 }            
-            }, interval);
-        }
+            }, 5000);
+        }*/
     }
     
     if (message.content === "$spamchannels") { 
-        message.channel.send("spam channels: " + spamid.join(", "));
+        message.channel.send("spam channels: " + spamid.join(" "));
     }
 
     if (message.content === "$info") {
@@ -74,7 +74,7 @@ client.on('message', message => {
     }
 
     if (message.content === "$infochannels") { 
-        message.channel.send("spawns info channels: " + infoid.join(", "));
+        message.channel.send("spawns info channels: " + infoid.join(" "));
     }
 
     if (message.embeds.length > 0) {
