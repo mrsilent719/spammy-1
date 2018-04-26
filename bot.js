@@ -4,8 +4,8 @@ const client = new Discord.Client();
 const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
 //var interval = 5000;
-var spamid = [];
-var infoid = [];
+//var spamid = [];
+//var infoid = [];
 
 /*function step() {
     var index;
