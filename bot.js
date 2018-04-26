@@ -27,7 +27,7 @@ client.on('message', message => {
     
     if (message.content === "$spam") { 
         if (spamid.indexOf(message.channel) < 0)
-            spamid.push(message.channel)
+            spamid.push(message.channel);
         
         message.channel.send("spam enabled");
     }
