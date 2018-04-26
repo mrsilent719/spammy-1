@@ -3,20 +3,21 @@ const fs = require("fs");
 const client = new Discord.Client();
 const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
-client.on('ready', () => {
-    console.log('I am ready!');
-    
-    interval = setInterval (function () {
-        var index;
-        for (index = 0; index < spamid.length; ++index) {
-            client.channels.get(spamid[index]).send('spamming here');
-        }
-    }, 5 * 1000); 
-});
-
-var interval;
+var interval = 5000;
 var spamid;
 var infoid;
+
+function step() {
+    var index;
+    for (index = 0; index < spamid.length; ++index) {
+        client.channels.get(spamid[index]).send('spamming here');
+    }
+} 
+
+client.on('ready', () => {
+    console.log('I am ready!');
+    setTimeout(step, interval);
+});
 
 client.on('message', message => {
     
