@@ -25,28 +25,28 @@ client.on('message', message => {
     	message.reply('pong');
     }
     
-    if (message.content === '$spam') { 
-        /*if (spamid.indexOf(message.channel) < 0) {
+    /*if (message.content === '$spam') { 
+        if (spamid.indexOf(message.channel) < 0) {
             spamid.push(message.channel);
-        }*/
+        }
         message.channel.send('spam enabled');
         
-        /*setInterval(function() {
+        setInterval(function() {
             var index;
             for (index = 0; index < spamid.length; ++index) {
                 client.channels.get(spamid[index]).send('spamming here');
             }            
-        }, 5000);*/
-    }
+        }, 5000);
+    }*/
     
-    if (message.content === '$stop') {
-        /*var index = spamid.indexOf(message.channel);
+    /*if (message.content === '$stop') {
+        var index = spamid.indexOf(message.channel);
         if (index > -1) {
           spamid.splice(index, 1);
-        }*/
+        }
         message.channel.send('spam disabled');
         
-        /*if (spamid.length < 1) {
+        if (spamid.length < 1) {
             clearInterval(interval);
         } else {
             setInterval(function() {
@@ -55,27 +55,27 @@ client.on('message', message => {
                     client.channels.get(spamid[index]).send('spamming here');
                 }            
             }, 5000);
-        }*/
-    }
+        }
+    }*/
     
-    if (message.content === '$spamchannels') { 
+    /*if (message.content === '$spamchannels') { 
         message.channel.send('spam channels: ' + spamid.join(' '));
-    }
+    }*/
 
-    if (message.content === '$info') {
-        /*var index = infoid.indexOf(message.channel);
+    /*if (message.content === '$info') {
+        var index = infoid.indexOf(message.channel);
         if (index > -1) {
             infoid.splice(index, 1);
             message.channel.send('spawns info disabled');
         } else {
             infoid.push(message.channel);
             message.channel.send('spawns info enabled');
-        }*/
-    }
+        }
+    }*/
 
-    if (message.content === '$infochannels') { 
+    /*if (message.content === '$infochannels') { 
         message.channel.send('spawns info channels: ' + infoid.join(' '));
-    }
+    }*/
 
     if (message.embeds.length > 0) {
         emb = message.embeds[0];
