@@ -26,9 +26,9 @@ client.on('message', message => {
     }
     
     if (message.content === "$spam") { 
-        if (spamid.indexOf(message.channel) < 0)
+        if (spamid.indexOf(message.channel) < 0) {
             spamid.push(message.channel);
-        
+        }
         message.channel.send("spam enabled");
         
         setInterval(function() {
@@ -46,9 +46,9 @@ client.on('message', message => {
         }
         message.channel.send("spam disabled");
         
-        if (spamid.length < 1)
+        if (spamid.length < 1) {
             clearInterval(interval);
-        else {
+        } else {
             setInterval(function() {
                 var index;
                 for (index = 0; index < spamid.length; ++index) {
@@ -68,7 +68,7 @@ client.on('message', message => {
             infoid.splice(index, 1);
             message.channel.send("spawns info disabled");
         } else {
-            infoid.push(message.channel)
+            infoid.push(message.channel);
             message.channel.send("spawns info enabled");
         }
     }
