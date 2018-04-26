@@ -5,6 +5,13 @@ const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
 client.on('ready', () => {
     console.log('I am ready!');
+    
+    interval = setInterval (function () {
+        var index;
+        for (index = 0; index < spamid.length; ++index) {
+            client.channels.get(spamid[index]).send('spamming here');
+        }
+    }, 5 * 1000); 
 });
 
 var interval;
@@ -22,13 +29,6 @@ client.on('message', message => {
             spamid.push(message.channel)
         
         message.channel.send("spam enabled");
-        
-        interval = setInterval (function () {
-           var index;
-            for (index = 0; index < spamid.length; ++index) {
-                client.channels.get(spamid[index]).send('spamming here');
-            }
-        }, 5 * 1000); 
     }
     
     if (message.content === "$stop") {
