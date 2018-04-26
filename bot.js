@@ -4,8 +4,8 @@ const client = new Discord.Client();
 const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
 //var interval = 5000;
-var spamid = [];
-var infoid = [];
+//var spamid = [];
+//var infoid = [];
 
 /*function step() {
     var index;
@@ -77,7 +77,7 @@ client.on('message', message => {
         message.channel.send('spawns info channels: ' + infoid.join(' '));
     }*/
 
-    if (message.embeds.length > 0) {
+    /*if (message.embeds.length > 0) {
         emb = message.embeds[0];
         if (emb.title.startsWith('A wild') && infoid.indexOf(message.channel.id)>-1) {
             //message.channel.send(emb.image.url);
@@ -87,7 +87,7 @@ client.on('message', message => {
             if (realname.length >0)
                 message.channel.send('A wild ' + realname + ' has appeared');
         }
-    }
+    }*/
     
 });
 
