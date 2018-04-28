@@ -9,7 +9,7 @@ var infoid = [];
 var curr = 0;
 var timer;
 
-function step() {
+/*function step() {
     if (spamid.length > 0) {
         if (curr >= spamid.lenght) {
             curr = 0;
@@ -17,14 +17,11 @@ function step() {
         client.channels.get(spamid[curr]).send('spamming here');
         curr = curr + 1;
     }
-    /*for (index = 0; index < spamid.length; ++index) {
-        client.channels.get(spamid[index]).send('spamming here');
-    }*/
-};
+};*/
 
 client.on('ready', () => {
     console.log('I am ready!');
-    timer = setTimeout(step, interval);
+    //timer = setTimeout(step, interval);
 });
 
 client.on('message', message => {
@@ -39,12 +36,14 @@ client.on('message', message => {
         }
         message.channel.send('spam enabled');
         
-        /*setInterval(function() {
-            var index;
-            for (index = 0; index < spamid.length; ++index) {
-                client.channels.get(spamid[index]).send('spamming here');
-            }            
-        }, 5000);*/
+        timer = clearInterval(interval);
+        timer = setInterval(function() {
+            if (curr >= spamid.lenght) {
+                curr = 0;
+            }
+            client.channels.get(spamid[curr]).send('spamming here');
+            curr = curr + 1;
+        }, interval);
     }
     
     if (message.content === '$stop') {
@@ -54,16 +53,16 @@ client.on('message', message => {
         }
         message.channel.send('spam disabled');
         
-        /*if (spamid.length < 1) {
-            clearInterval(interval);
-        } else {
-            setInterval(function() {
-                var index;
-                for (index = 0; index < spamid.length; ++index) {
-                    client.channels.get(spamid[index]).send('spamming here');
-                }            
-            }, 5000);
-        }*/
+        timer = clearInterval(interval);
+        if (spamid.lenght > 0) {
+            timer = setInterval(function() {
+                if (curr >= spamid.lenght) {
+                    curr = 0;
+                }
+                client.channels.get(spamid[curr]).send('spamming here');
+                curr = curr + 1;
+            }, interval);
+        }
     }
     
     if (message.content === '$spamchannels') { 
