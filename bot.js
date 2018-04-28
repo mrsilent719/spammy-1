@@ -7,11 +7,13 @@ var interval = 5000;
 var spamid = [];
 var infoid = [];
 var curr = 0;
+var timer;
 
 function step() {
     if (spamid.length > 0) {
-        if (curr >= spamid.lenght)
+        if (curr >= spamid.lenght) {
             curr = 0;
+        }
         client.channels.get(spamid[curr]).send('spamming here');
         curr = curr + 1;
     }
@@ -22,7 +24,7 @@ function step() {
 
 client.on('ready', () => {
     console.log('I am ready!');
-    setTimeout(step, interval);
+    timer = setTimeout(step, interval);
 });
 
 client.on('message', message => {
