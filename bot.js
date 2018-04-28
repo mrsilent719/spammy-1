@@ -3,11 +3,10 @@ const fs = require("fs");
 const client = new Discord.Client();
 const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 
-var interval = 5000;
+var interval;
 var spamid = [];
 var infoid = [];
 var curr = 0;
-var timer;
 
 /*function step() {
     if (spamid.length > 0) {
@@ -36,14 +35,14 @@ client.on('message', message => {
         }
         message.channel.send('spam enabled');
         
-        timer = clearInterval(interval);
-        timer = setInterval(function() {
+        clearInterval(interval);
+        interval = setInterval(function() {
             if (curr >= spamid.lenght) {
                 curr = 0;
             }
             client.channels.get(spamid[curr]).send('spamming here');
             curr = curr + 1;
-        }, interval);
+        }, 5000);
     }
     
     if (message.content === '$stop') {
@@ -53,15 +52,15 @@ client.on('message', message => {
         }
         message.channel.send('spam disabled');
         
-        timer = clearInterval(interval);
+        clearInterval(interval);
         if (spamid.lenght > 0) {
-            timer = setInterval(function() {
+            interval = setInterval(function() {
                 if (curr >= spamid.lenght) {
                     curr = 0;
                 }
                 client.channels.get(spamid[curr]).send('spamming here');
                 curr = curr + 1;
-            }, interval);
+            }, 5000);
         }
     }
     
