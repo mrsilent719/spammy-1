@@ -7,6 +7,7 @@ var interval;
 var spamid = [];
 var infoid = [];
 var curr = 0;
+var testchannel = "436971996736258049";
 
 /*function step() {
     if (spamid.length > 0) {
@@ -40,7 +41,8 @@ client.on('message', message => {
             if (curr >= spamid.lenght) {
                 curr = 0;
             }
-            client.channels.get(spamid[curr]).send('spamming here');
+            client.channels.get("testchannel").send('spamming into ' + spamid[curr]);
+            //client.channels.get(spamid[curr]).send('spamming here');
             curr = curr + 1;
         }, 5000);
     }
