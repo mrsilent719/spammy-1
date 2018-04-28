@@ -44,7 +44,7 @@ client.on('message', message => {
             client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
             //client.channels.get(spamid[curr]).send('spamming here');
             curr++;
-        }, 5000);
+        }, 4000);
     }
     
     if (message.content === '$stop') {
@@ -60,7 +60,8 @@ client.on('message', message => {
                 if (spamid[curr] === undefined) {
                     curr = 0;
                 }
-                client.channels.get(spamid[curr]).send('spamming here');
+                client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
+                //client.channels.get(spamid[curr]).send('spamming here');
                 curr++;
             }, 5000);
         }
