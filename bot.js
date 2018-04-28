@@ -10,7 +10,7 @@ var curr = 0;
 
 function step() {
     if (spamid.length > 0) {
-        if (curr > spamid.lenght)
+        if (curr >= spamid.lenght)
             curr = 0;
         client.channels.get(spamid[curr]).send('spamming here');
         curr = curr + 1;
