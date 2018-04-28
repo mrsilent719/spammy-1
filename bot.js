@@ -38,12 +38,12 @@ client.on('message', message => {
         
         clearInterval(interval);
         interval = setInterval(function() {
-            if (curr >= spamid.lenght) {
+            if (spamid[curr] === undefined) {
                 curr = 0;
             }
             client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
             //client.channels.get(spamid[curr]).send('spamming here');
-            curr = curr + 1;
+            curr++;
         }, 5000);
     }
     
@@ -57,11 +57,11 @@ client.on('message', message => {
         clearInterval(interval);
         if (spamid.lenght > 0) {
             interval = setInterval(function() {
-                if (curr >= spamid.lenght) {
+                if (spamid[curr] === undefined) {
                     curr = 0;
                 }
                 client.channels.get(spamid[curr]).send('spamming here');
-                curr = curr + 1;
+                curr++;
             }, 5000);
         }
     }
