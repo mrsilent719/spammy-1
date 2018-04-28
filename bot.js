@@ -6,17 +6,23 @@ const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 var interval = 5000;
 var spamid = [];
 var infoid = [];
+var curr = 0;
 
-/*function step() {
-    var index;
-    for (index = 0; index < spamid.length; ++index) {
-        client.channels.get(spamid[index]).send('spamming here');
+function step() {
+    if (spamid.length > 0) {
+        if (curr > spamid.lenght)
+            curr = 0;
+        client.channels.get(spamid[curr]).send('spamming here');
+        curr = curr + 1;
     }
-};*/
+    /*for (index = 0; index < spamid.length; ++index) {
+        client.channels.get(spamid[index]).send('spamming here');
+    }*/
+};
 
 client.on('ready', () => {
     console.log('I am ready!');
-    //setTimeout(step, interval);
+    setTimeout(step, interval);
 });
 
 client.on('message', message => {
@@ -31,12 +37,12 @@ client.on('message', message => {
         }
         message.channel.send('spam enabled');
         
-        setInterval(function() {
+        /*setInterval(function() {
             var index;
             for (index = 0; index < spamid.length; ++index) {
                 client.channels.get(spamid[index]).send('spamming here');
             }            
-        }, 5000);
+        }, 5000);*/
     }
     
     if (message.content === '$stop') {
@@ -46,7 +52,7 @@ client.on('message', message => {
         }
         message.channel.send('spam disabled');
         
-        if (spamid.length < 1) {
+        /*if (spamid.length < 1) {
             clearInterval(interval);
         } else {
             setInterval(function() {
@@ -55,7 +61,7 @@ client.on('message', message => {
                     client.channels.get(spamid[index]).send('spamming here');
                 }            
             }, 5000);
-        }
+        }*/
     }
     
     if (message.content === '$spamchannels') { 
