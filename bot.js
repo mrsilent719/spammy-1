@@ -41,8 +41,8 @@ client.on('message', message => {
             if (spamid[curr] === undefined) {
                 curr = 0;
             }
-            client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
-            //client.channels.get(spamid[curr]).send('spamming here');
+            //client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
+            client.channels.get(spamid[curr]).send('spamming here');
             curr++;
         }, 4000);
     }
@@ -55,13 +55,13 @@ client.on('message', message => {
         message.channel.send('spam disabled');
         
         clearInterval(interval);
-        if (spamid.lenght > 0) {
+        if (spamid.length > 0) {
             interval = setInterval(function() {
                 if (spamid[curr] === undefined) {
                     curr = 0;
                 }
-                client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
-                //client.channels.get(spamid[curr]).send('spamming here');
+                //client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
+                client.channels.get(spamid[curr]).send('spamming here');
                 curr++;
             }, 5000);
         }
