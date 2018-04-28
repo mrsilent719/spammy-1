@@ -41,7 +41,7 @@ client.on('message', message => {
             if (curr >= spamid.lenght) {
                 curr = 0;
             }
-            client.channels.get("testchannel").send('spamming into ' + spamid[curr]);
+            client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
             //client.channels.get(spamid[curr]).send('spamming here');
             curr = curr + 1;
         }, 5000);
