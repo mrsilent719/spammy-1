@@ -90,14 +90,16 @@ client.on('message', message => {
         if (message.embeds.length > 0) {
             emb = message.embeds[0];
             if (emb.title.startsWith('A wild')) {
-                //message.channel.send(emb.image.url);
+                message.channel.send('Message got embed');
+                if (message.attachments.size)
+                    message.channel.send('Message got attachment');
                 //name = emb.image.url;
                 //att = message.attachments[0];
                 //realname = att.size;
                 //realname = images[name];
                 //if (realname.length >0)
                 //message.channel.send(att);
-                message.channel.send(JSON.stringify(emb, null, 2));
+                //message.channel.send(JSON.stringify(emb, null, 2));
             }
         }
     }
