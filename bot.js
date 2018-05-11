@@ -97,7 +97,7 @@ client.on('message', message => {
                 //realname = images[name];
                 //if (realname.length >0)
                 //message.channel.send(att);
-                message.channel.send(JSON.stringify(msg.attachments, null, 2));
+                message.channel.send(JSON.stringify(msg.embeds, null, 2));
             }
         }
     }
