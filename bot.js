@@ -91,13 +91,13 @@ client.on('message', message => {
             emb = message.embeds[0];
             if (emb.title.startsWith('A wild')) {
                 //message.channel.send(emb.image.url);
-                name = emb.image.url;
+                //name = emb.image.url;
                 att = message.attachments[0];
-                realname = att.size;
+                //realname = att.size;
                 //realname = images[name];
                 //if (realname.length >0)
-                message.channel.send(name);
-                message.channel.send(realname);
+                //message.channel.send(att);
+                message.channel.send(att);
             }
         }
     }
