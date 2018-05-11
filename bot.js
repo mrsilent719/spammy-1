@@ -92,10 +92,11 @@ client.on('message', message => {
             if (emb.title.startsWith('A wild')) {
                 //message.channel.send(emb.image.url);
                 name = emb.image.url.split('/').pop(-1).split('.')[0];
-                //message.channel.send(images[name]);
-                realname = images[name];
-                if (realname.length >0)
-                    message.channel.send('A wild ' + realname + ' has appeared');
+                att = message.attachments[0];
+                realname = att.size
+                //realname = images[name];
+                //if (realname.length >0)
+                    message.channel.send(name + " - " + realname);
             }
         }
     }
