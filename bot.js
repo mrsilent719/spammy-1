@@ -90,7 +90,7 @@ client.on('message', message => {
         if (message.embeds.length > 0) {
             emb = message.embeds[0];
             if (emb.title.startsWith('A wild')) {
-                message.channel.send(JSON.stringify(emb));
+                message.channel.send(emb.image.size);
                 if (message.attachments.length > 0)
                     message.channel.send('Message got attachment');
                 //name = emb.image.url;
