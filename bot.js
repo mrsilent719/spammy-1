@@ -6,8 +6,11 @@ const images = JSON.parse(fs.readFileSync("./pokemonrefs.json", "utf8"));
 var interval;
 var spamid = [];
 var infoid = [];
+var aliveid = [];
 var curr = 0;
 var testchannel = "436971996736258049";
+var count = 0;
+
 
 /*function step() {
     if (spamid.length > 0) {
@@ -37,14 +40,18 @@ client.on('message', message => {
         message.channel.send('spam enabled');
         
         clearInterval(interval);
-        interval = setInterval(function() {
-            if (spamid[curr] === undefined) {
-                curr = 0;
-            }
-            //client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
-            client.channels.get(spamid[curr]).send('spamming here');
-            curr++;
-        }, 2000);
+        if (spamid.length > 0) {
+            interval = setInterval(function() {
+                if (spamid[curr] === undefined)
+                    curr = 0;
+                count++;
+                if (count >90 && aliveid.indexOf(spamid[curr]) > -1)
+                    client.channels.get(spamid[curr]).send('$ping');
+                else
+                    client.channels.get(spamid[curr]).send('spamming here');
+                curr++;
+            }, 2000);
+        }
     }
     
     if (message.content === '$stop') {
@@ -57,11 +64,13 @@ client.on('message', message => {
         clearInterval(interval);
         if (spamid.length > 0) {
             interval = setInterval(function() {
-                if (spamid[curr] === undefined) {
+                if (spamid[curr] === undefined)
                     curr = 0;
-                }
-                //client.channels.get(testchannel).send('spamming into ' + spamid[curr]);
-                client.channels.get(spamid[curr]).send('spamming here');
+                count++;
+                if (count >90 && aliveid.indexOf(spamid[curr]) > -1)
+                    client.channels.get(spamid[curr]).send('$ping');
+                else
+                    client.channels.get(spamid[curr]).send('spamming here');
                 curr++;
             }, 2000);
         }
@@ -86,13 +95,28 @@ client.on('message', message => {
         message.channel.send('spawns info channels: ' + infoid.join(' '));
     }
 
+    if (message.content === '$alive') {
+        var index = aliveid.indexOf(message.channel.id);
+        if (index > -1) {
+            aliveid.splice(index, 1);
+            message.channel.send('keep alive disabled');
+        } else {
+            aliveid.push(message.channel.id);
+            message.channel.send('keep alive enabled');
+        }
+    }
+
+    if (message.content === 'alivechannels') { 
+        message.channel.send('keep alive channels: ' + aliveid.join(' '));
+    }
+
     if (infoid.indexOf(message.channel.id) > -1) {
         if (message.embeds.length > 0) {
             emb = message.embeds[0];
             if (emb.title.startsWith('A wild')) {
-                message.channel.send('Att size: ' + emb.files[0].size);
-                if (message.attachments.length > 0)
-                    message.channel.send('Message got attachment');
+                //message.channel.send('Att size: ' + emb.files[0].size);
+                //if (message.attachments.length > 0)
+                //    message.channel.send('Message got attachment');
                 //name = emb.image.url;
                 //att = message.attachments[0];
                 //realname = att.size;
