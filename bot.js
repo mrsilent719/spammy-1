@@ -10,6 +10,7 @@ var aliveid = [];
 var curr = 0;
 var testchannel = "436971996736258049";
 var count = 0;
+var acurr = 0;
 
 
 /*function step() {
@@ -45,11 +46,18 @@ client.on('message', message => {
                 if (spamid[curr] === undefined)
                     curr = 0;
                 count++;
-                if (count >90 && aliveid.indexOf(spamid[curr]) > -1)
-                    client.channels.get(spamid[curr]).send('$ping');
-                else
+                if (count > 90 && aliveid.length > 0) {
+                    if (aliveid[acurr] === undefined) {
+                        acurr = 0;
+                        count = 0;   
+                    }
+                    client.channels.get(aliveid[acurr]).send('p!ping');
+                    acurr++;
+                }
+                else {
                     client.channels.get(spamid[curr]).send('spamming here');
-                curr++;
+                    curr++;
+                }
             }, 2000);
         }
     }
@@ -67,11 +75,18 @@ client.on('message', message => {
                 if (spamid[curr] === undefined)
                     curr = 0;
                 count++;
-                if (count >90 && aliveid.indexOf(spamid[curr]) > -1)
-                    client.channels.get(spamid[curr]).send('$ping');
-                else
+                if (count > 90 && aliveid.length > 0) {
+                    if (aliveid[acurr] === undefined) {
+                        acurr = 0;
+                        count = 0;   
+                    }
+                    client.channels.get(aliveid[acurr]).send('p!ping');
+                    acurr++;
+                }
+                else {
                     client.channels.get(spamid[curr]).send('spamming here');
-                curr++;
+                    curr++;
+                }
             }, 2000);
         }
     }
@@ -106,7 +121,7 @@ client.on('message', message => {
         }
     }
 
-    if (message.content === 'alivechannels') { 
+    if (message.content === '$alivechannels') { 
         message.channel.send('keep alive channels: ' + aliveid.join(' '));
     }
 
